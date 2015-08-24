@@ -1,20 +1,7 @@
-from ftw.autofeature.testing import ZCML_LAYER
-from unittest2 import TestCase
+from ftw.autofeature.tests import ZCMLTestCase
 
 
-ZCML = '''
-<configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:zcml="http://namespaces.zope.org/zcml"
-    xmlns:autofeature="http://namespaces.zope.org/autofeature"
-    package="ftw.autofeature.tests">
-{}
-</configure>
-'''
-
-
-class TestExtrasFeaturesAreAutomaticallyRegistered(TestCase):
-    layer = ZCML_LAYER
+class TestExtrasFeaturesAreAutomaticallyRegistered(ZCMLTestCase):
 
     def test_zcml_feature_registered_when_using_utility(self):
         test_feature_name = 'ftw.autofeature:tests'
@@ -30,18 +17,3 @@ class TestExtrasFeaturesAreAutomaticallyRegistered(TestCase):
         self.assert_feature_provided('ftw.autofeature:example')
         self.assert_feature_provided('ftw.autofeature:example:tests')
         self.assert_feature_provided('ftw.autofeature:tests:example')
-
-    def load_zcml(self, *lines):
-        self.layer.load_zcml_string(ZCML.format('\n'.join(lines)))
-
-    def assert_feature_provided(self, feature_name):
-        context = self.layer._get_configuration_context()
-        self.assertTrue(
-            context.hasFeature(feature_name),
-            'The feature {} should now be registered.'.format(feature_name))
-
-    def assert_feature_not_provided(self, feature_name):
-        context = self.layer._get_configuration_context()
-        self.assertFalse(
-            context.hasFeature(feature_name),
-            'The feature {} should NOT be registered.'.format(feature_name))

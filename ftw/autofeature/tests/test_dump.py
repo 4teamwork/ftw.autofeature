@@ -1,7 +1,6 @@
-from ftw.autofeature.testing import ZCML_LAYER
+from ftw.autofeature.tests import ZCMLTestCase
 from ftw.autofeature.tests.helpers import capture_streams
 from StringIO import StringIO
-from unittest2 import TestCase
 
 
 ZCML = '''
@@ -15,8 +14,7 @@ ZCML = '''
 '''
 
 
-class TestDumpRegisteredFeatures(TestCase):
-    layer = ZCML_LAYER
+class TestDumpRegisteredFeatures(ZCMLTestCase):
 
     def test_dumps_registered_features(self):
         output = StringIO()
@@ -32,6 +30,3 @@ class TestDumpRegisteredFeatures(TestCase):
             '-  ftw.autofeature:tests\n'
             '-  ftw.autofeature:tests:example\n',
             output.getvalue())
-
-    def load_zcml(self, *lines):
-        self.layer.load_zcml_string(ZCML.format('\n'.join(lines)))
