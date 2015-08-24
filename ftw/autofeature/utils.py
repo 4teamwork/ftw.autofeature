@@ -1,4 +1,6 @@
+from operator import attrgetter
 from path import Path
+from pkg_resources import get_distribution
 
 
 def find_package_by_module(module):
@@ -13,6 +15,19 @@ def find_package_by_module(module):
                    pkg_info.lines())
     assert names, 'No "Name: " in {0}'.format(pkg_info)
     return names[0].split(':')[1].strip()
+
+
+def find_extras_by_package(packagename):
+    dist = get_distribution(packagename)
+    requires = set(map(attrgetter('project_name'), dist.requires()))
+    result = {}
+
+    for name in dist.extras:
+        extras_requires = set(map(attrgetter('project_name'),
+                                  dist.requires([name])))
+        result[name] = sorted(extras_requires - requires)
+
+    return result
 
 
 def get_egg_info_path_by_module(module):

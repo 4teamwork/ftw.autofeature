@@ -4,6 +4,7 @@ import os
 version = '1.0.0.dev0'
 
 tests_require = [
+    'ftw.testing',
 ]
 
 
