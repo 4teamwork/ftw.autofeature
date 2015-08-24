@@ -35,6 +35,7 @@ setup(name='ftw.autofeature',
       zip_safe=False,
 
       install_requires=[
+          'path.py',
           'setuptools',
       ],
       tests_require=tests_require,
