@@ -1,3 +1,4 @@
+from ftw.autofeature.utils import all_packages_installed
 from ftw.autofeature.utils import find_extras_by_package
 from ftw.autofeature.utils import find_package_by_module
 from unittest2 import TestCase
@@ -37,3 +38,15 @@ class TestGetExtrasByPackage(TestCase):
     def test_dependencies_are_listed_in_each_extras(self):
         self.assertIn('ftw.testing',
                       find_extras_by_package(u'ftw.autofeature')['tests'])
+
+
+class TestAllPackagesInstalled(TestCase):
+
+    def test_all_packages_installed(self):
+        self.assertTrue(all_packages_installed(['ftw.autofeature',
+                                                'ftw.testing',
+                                                'unittest2']))
+
+    def test_not_all_packages_installed(self):
+        self.assertFalse(all_packages_installed(['ftw.autofeature',
+                                                 'django']))

@@ -1,5 +1,6 @@
 from operator import attrgetter
 from path import Path
+from pkg_resources import DistributionNotFound
 from pkg_resources import get_distribution
 
 
@@ -48,3 +49,12 @@ def get_egg_info_path_in_path(path):
         return egg_infos[0]
     else:
         return None
+
+
+def all_packages_installed(packagenames):
+    try:
+        map(get_distribution, packagenames)
+    except DistributionNotFound:
+        return False
+    else:
+        return True
