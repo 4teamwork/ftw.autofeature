@@ -81,6 +81,27 @@ When each dependency is installed but not the extras explicitly, this will thus 
 register the feature.
 
 
+==============
+ Dump feature
+==============
+
+The ``autofeature:dump`` directive dumps the currently registered ZCML features
+to the standard out.
+Simply use the directive to dump the features at any point in the ZCML:
+
+
+.. code:: XML
+
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:autofeature="http://namespaces.zope.org/autofeature">
+
+        <include package="ftw.autofeature" file="meta.zcml" />
+        <autofeature:dump />
+
+    </configure>
+
+
 =======
  Links
 =======

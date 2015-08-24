@@ -9,4 +9,11 @@
         handler=".extras.declare_extras_features"
         />
 
+    <meta:directive
+        namespace="http://namespaces.zope.org/autofeature"
+        name="dump"
+        schema=".dump.IDumpFeaturesDirective"
+        handler=".dump.dump_features"
+        />
+
 </configure>
