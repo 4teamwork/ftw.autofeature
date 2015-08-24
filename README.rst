@@ -1,9 +1,8 @@
 ftw.autofeature automatically registers ZCML features.
 
 
-=================
- Extras features
-=================
+Extras features
+===============
 
 The ``autofeature:extras`` directive automatically registers ZCML features for each
 extra (``extras_requires``) of your package.
@@ -12,7 +11,7 @@ is installed.
 
 
 Example
-~~~~~~~
+-------
 
 When having a setup.py like this:
 
@@ -73,7 +72,7 @@ it easy to combine extras with ``AND``:
 
 
 Limitiation
-~~~~~~~~~~~
+-----------
 
 We cannot really detect whether the extras was explictly used on installation time.
 We therefore test whether each dependency in the extras is installed.
@@ -81,9 +80,8 @@ When each dependency is installed but not the extras explicitly, this will thus 
 register the feature.
 
 
-==============
- Dump feature
-==============
+Dump feature
+============
 
 The ``autofeature:dump`` directive dumps the currently registered ZCML features
 to the standard out.
@@ -102,9 +100,8 @@ Simply use the directive to dump the features at any point in the ZCML:
     </configure>
 
 
-=======
- Links
-=======
+Links
+=====
 
 - Github: https://github.com/4teamwork/ftw.autofeature
 - Issues: https://github.com/4teamwork/ftw.autofeature/issues
@@ -112,9 +109,8 @@ Simply use the directive to dump the features at any point in the ZCML:
 - Continuous integration: https://jenkins.4teamwork.ch/search?q=ftw.autofeature
 
 
-===========
- Copyright
-===========
+Copyright
+=========
 
 This package is copyright by `4teamwork <http://www.4teamwork.ch/>`_.
 
