@@ -10,7 +10,7 @@ tests_require = [
 
 setup(name='ftw.autofeature',
       version=version,
-      description="",
+      description="ftw.autofeature automatically registers ZCML features.",
       long_description=open("README.rst").read() + "\n" + open(
           os.path.join("docs", "HISTORY.txt")).read(),
 
@@ -24,7 +24,7 @@ setup(name='ftw.autofeature',
           'Topic :: Software Development :: Libraries :: Python Modules',
       ],
 
-      keywords='ftw autofeature',
+      keywords='ftw autofeature zcml feature',
       author='4teamwork AG',
       author_email='mailto:info@4teamwork.ch',
       url='https://github.com/4teamwork/ftw.autofeature',
