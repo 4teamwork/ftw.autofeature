@@ -46,8 +46,13 @@ def get_egg_info_path_by_module(module):
 
 def get_egg_info_path_in_path(path):
     egg_infos = path.glob('*.egg-info') + path.glob('EGG-INFO')
-    if egg_infos:
-        return egg_infos[0]
+    if not egg_infos:
+        return None
+
+    egg_info, = egg_infos
+    pkg_info = egg_info.joinpath('PKG-INFO')
+    if pkg_info.isfile():
+        return egg_info
     else:
         return None
 
