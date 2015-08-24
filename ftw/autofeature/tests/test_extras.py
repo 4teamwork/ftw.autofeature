@@ -20,13 +20,14 @@ class TestExtrasFeaturesAreAutomaticallyRegistered(TestCase):
         test_feature_name = 'ftw.autofeature:tests'
         self.assert_feature_not_provided(test_feature_name)
 
-        self.layer.load_zcml_string(ZCML.format(
-            '<include package="ftw.autofeature" file="meta.zcml" />'))
+        self.load_zcml('<include package="ftw.autofeature" file="meta.zcml" />')
         self.assert_feature_not_provided(test_feature_name)
 
-        self.layer.load_zcml_string(ZCML.format(
-            '<autofeature:extras />'))
+        self.load_zcml('<autofeature:extras />')
         self.assert_feature_provided(test_feature_name)
+
+    def load_zcml(self, *lines):
+        self.layer.load_zcml_string(ZCML.format('\n'.join(lines)))
 
     def assert_feature_provided(self, feature_name):
         context = self.layer._get_configuration_context()
