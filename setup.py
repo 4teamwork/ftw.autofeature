@@ -38,6 +38,8 @@ setup(name='ftw.autofeature',
       install_requires=[
           'path.py',
           'setuptools',
+          'zope.configuration',
+          'zope.interface',
       ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require,
