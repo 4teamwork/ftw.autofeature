@@ -26,6 +26,11 @@ class TestExtrasFeaturesAreAutomaticallyRegistered(TestCase):
         self.load_zcml('<autofeature:extras />')
         self.assert_feature_provided(test_feature_name)
 
+        self.assert_feature_provided('ftw.autofeature:tests')
+        self.assert_feature_provided('ftw.autofeature:example')
+        self.assert_feature_provided('ftw.autofeature:example:tests')
+        self.assert_feature_provided('ftw.autofeature:tests:example')
+
     def load_zcml(self, *lines):
         self.layer.load_zcml_string(ZCML.format('\n'.join(lines)))
 

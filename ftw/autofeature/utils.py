@@ -1,3 +1,4 @@
+from itertools import permutations
 from operator import attrgetter
 from path import Path
 from pkg_resources import DistributionNotFound
@@ -58,3 +59,10 @@ def all_packages_installed(packagenames):
         return False
     else:
         return True
+
+
+def combine_features(names):
+    result = []
+    for parts in range(1, len(names) + 1):
+        result.extend(map(':'.join, permutations(names, parts)))
+    return result

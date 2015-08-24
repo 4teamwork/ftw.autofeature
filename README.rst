@@ -31,7 +31,8 @@ When having a setup.py like this:
 
           extras_require={
               'tests': ['unittest2'],
-              'foo': ['foo', 'foo-compat']})
+              'foo': ['foo', 'foo-compat'],
+              'bar': ['bar', 'bar-compat']})
 
 
 you can let ``ftw.autofeature`` automatically declare features for your extras:
@@ -50,11 +51,25 @@ you can let ``ftw.autofeature`` automatically declare features for your extras:
             <!-- foo things -->
         </configure>
 
+        <configure zcml:condition="have my.package:bar">
+            <!-- bar things -->
+        </configure>
+
+        <configure zcml:condition="have my.package:foo:bar">
+            <!-- foo and bar things -->
+        </configure>
+
     </configure>
 
 
 The feature ``my.package:foo`` is only registered when the extras is installed.
+When installing both, ``foo`` and ``bar``, multiple features are registered so that
+it easy to combine extras with ``AND``:
 
+- ``my.package:foo``
+- ``my.package:foo:bar``
+- ``my.package:bar``
+- ``my.package:bar:foo``
 
 
 Limitiation

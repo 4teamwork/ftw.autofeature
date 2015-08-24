@@ -1,4 +1,5 @@
 from ftw.autofeature.utils import all_packages_installed
+from ftw.autofeature.utils import combine_features
 from ftw.autofeature.utils import find_extras_by_package
 from ftw.autofeature.utils import find_package_by_module
 from zope.interface import Interface
@@ -21,10 +22,10 @@ def declare_extras_features(context):
     extras = find_extras_by_package(package_name)
     LOG.debug('extras for {}: {}'.format(package_name, extras))
 
-    for extras_name, dependencies in extras.items():
-        if not all_packages_installed(dependencies):
-            continue
+    installed_extras = [name for (name, dependencies) in extras.items()
+                        if all_packages_installed(dependencies)]
 
-        feature_name = '{}:{}'.format(package_name, extras_name)
+    for postfix in combine_features(installed_extras):
+        feature_name = '{}:{}'.format(package_name, postfix)
         LOG.debug('declaring feature {}'.format(feature_name))
         context.provideFeature(feature_name)

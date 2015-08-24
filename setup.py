@@ -40,7 +40,8 @@ setup(name='ftw.autofeature',
           'setuptools',
       ],
       tests_require=tests_require,
-      extras_require=dict(tests=tests_require),
+      extras_require=dict(tests=tests_require,
+                          example=['unittest2']),
 
       entry_points="""
       # -*- Entry points: -*-
