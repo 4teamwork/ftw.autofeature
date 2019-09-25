@@ -5,7 +5,7 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add Plone 5 support. [jone]
 
 
 1.0.0 (2015-08-24)
